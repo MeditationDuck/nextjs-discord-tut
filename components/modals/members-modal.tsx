@@ -12,7 +12,7 @@ import {
 } from "@/components/ui/dialog";
 import { ServerWithMembersWithProfile } from "@/types";
 import { ScrollArea } from "@/components/ui/scroll-area";
-import { UserAvator } from "@/components/user-avator";
+import { UserAvatar } from "@/components/user-avatar";
 import { 
   Shield,
   ShieldAlert, 
@@ -118,7 +118,7 @@ export const MembersModal = () => {
         <ScrollArea className="mt-8 max-h-[420px] pr-6">
           {server?.members?.map((member) => (
             <div key={member.id} className="flex items-center gap-x-2 mb-6">
-              <UserAvator src={member.profile.imageUrl}/>
+              <UserAvatar src={member.profile.imageUrl}/>
               <div className="flex flex-col gap-y-1">
                 <div className="text-xs font-semibold flex items-center gap-x-1">
                   {member.profile.name}
