@@ -1,13 +1,14 @@
 "use client";
 
+
 import { Member, Message, Profile } from "@prisma/client";
-import { type } from "os";
 import { ChatWelcome } from "./chat-welcome";
 import { useChatQuery } from "@/hooks/use-chat-query";
 import { Loader2, ServerCrash } from "lucide-react";
 import { Fragment } from "react";
 import { ChatItem } from "./chat-item";
 import { format } from "date-fns";
+import { useChatSocket } from "@/hooks/use-chat-socket";
 
 const DATE_FORMAT = "d MMM yyyy, HH:mm";
 
@@ -41,6 +42,8 @@ const ChatMessages = ({
   type,
 }: ChatMessagesProps) => {
   const queryKey = `chat:${chatId}`
+  const addKey = `chat:${chatId}:messages`
+  const updateKey = `chat:${chatId}:messages:update`
 
   const {
     data,
@@ -53,6 +56,12 @@ const ChatMessages = ({
     apiUrl,
     paramKey,
     paramValue,
+  });
+
+  useChatSocket({
+    queryKey,
+    addKey, 
+    updateKey,
   })
 
   if(status === "loading") {
@@ -90,13 +99,13 @@ const ChatMessages = ({
       <div className="flex flex-col-reverse mt-auto">
         {data?.pages?.map((group, i) => (
           <Fragment key={i}>
-            {group.items.map((message: MessageWithMemberWithProfile) => (
+            {group?.items.map((message: MessageWithMemberWithProfile) => (
               <ChatItem
                 key={message.id}
                 id={message.id}
                 content={message.content}
                 member={message.member}
-                currentMember={message.member}
+                currentMember={member}
                 fileUrl={message.fileUrl}
                 deleted={message.deleted}
                 timestamp={format(new Date(message.createdAt), DATE_FORMAT)}

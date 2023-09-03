@@ -54,8 +54,6 @@ export default async function handler(
     const member = await server.members.find((member)=> member.profileId === profile.id);
 
     if(!member) return res.status(401).json({ error: "Member not found" });
-    
-    console.log("-------------------");
 
     const message = await db.message.create({
       data: {
