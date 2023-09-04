@@ -65,8 +65,6 @@ export const FileUpload = ({
       onUploadError={(error: Error) => {
         console.log(error);
       }}
-    >
-
-    </UploadDropzone>
+    />
   )
 }
