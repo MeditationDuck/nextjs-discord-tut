@@ -119,9 +119,7 @@ export const EditServerModal = () => {
                       </FormControl>
                     </FormItem>
                   )}
-                >
-
-                </FormField>
+                />
               </div>
               <FormField
                 control={form.control}
