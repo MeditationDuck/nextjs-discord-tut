@@ -113,9 +113,7 @@ export const InitialModal = () => {
                       </FormControl>
                     </FormItem>
                   )}
-                >
-
-                </FormField>
+                />
               </div>
               <FormField
                 control={form.control}

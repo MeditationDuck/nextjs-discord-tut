@@ -115,8 +115,8 @@ export const MessageFileModal = () => {
                       </FormControl>
                     </FormItem>
                   )}
-                >
-                </FormField>
+                />
+                
               </div>
             </div>
             <DialogFooter className="gb-gray-100 px-6 py-4">
